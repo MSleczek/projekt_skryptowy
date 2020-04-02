@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 mt-3 left">
+            {% for post in post_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.tytul }}</h2>
+                    <p class="card-text text-muted h6">{{ post.autor }} | {{ post.dodano}} </p>
+                    <p class="card-text">{{post.tresc|slice:":200" }}</p>
+                    <a href="{% url 'post_detail1' post.slug  %}" class="btn btn-secondary mb-3">Czytaj więcej</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
