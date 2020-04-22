@@ -1,0 +1,5 @@
+Elementy, które zostały już zrealizowane:
+- Panel logowania dla administratora
+- Dodawanie analiz sprawdzianów 
+- Dodawanie innych rzeczy do strony 
+- Dodawanie postów z panelu administratora 
