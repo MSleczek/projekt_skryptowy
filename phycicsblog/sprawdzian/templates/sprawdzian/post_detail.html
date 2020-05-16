@@ -1,12 +1,94 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="row">
-    <div class="col-md-8 card mb-4  mt-3 left top">
-      <div class="card-body">
-        <h1>{% block title %} {{ object.tytul }} {% endblock title %}</h1>
-        <p class=" text-muted">{{ post.autor }} | {{ post.dodano }}</p>
-        <p class="card-text ">{{ object.tresc | safe }}</p>
-      </div>
-    </div>
+{% if request.user.is_authenticated %}
+<div class="bg text-center">
+	<p>{% block title %} {{ object.tytul }} {% endblock title %}</p>
 </div>
+<div class="container">
+	<div class="row">
+		<div>
+		  <div class="card-body" width="100%">		
+			{% if object.zdjecie_1.url == '/media/default.jpg' %}
+			<style> #delete { display:none; } </style>
+			{% endif %}
+			{% if object.zdjecie_2.url == '/media/default.jpg' %}
+			<style> #delete1 { display:none; } </style>
+			{% endif %}
+			{% if object.zdjecie_3.url == '/media/default.jpg' %}
+			<style> #delete2 { display:none; } </style>
+			{% endif %}	 
+			{% if object.plik_1.url == '/media/default.pdf' %}
+			<style> #dele1 { display:none; } </style>
+			{% endif %}	    
+			{% if object.plik_2.url == '/media/default.pdf' %}
+			<style> #dele2 { display:none; } </style>
+			{% endif %}	  
+			{% if object.plik_3.url == '/media/default.pdf' %}
+			<style> #dele3 { display:none; } </style>
+			{% endif %}	  
+			{% if object.plik_4.url == '/media/default.pdf' %}
+			<style> #dele4 { display:none; } </style>
+			{% endif %}	  		
+			<h1>{% block tytul %} {{ object.tytul }} {% endblock tytul %}</h1>
+			<p class=" text-muted">{{ post.autor }} | {{ post.dodano }}</p>
+			<p class="card-text ">{{ object.tresc | safe }}</p>
+			<p class="font-weight-bold"> Załączniki do pobrania: </p>
+			{% if object.zdjecie_1.url == '/media/default.jpg' and object.zdjecie_2.url == '/media/default.jpg' and object.zdjecie_3.url == '/media/default.jpg' and object.plik_1.url == '/media/default.pdf' and object.plik_2.url == '/media/default.pdf' and object.plik_3.url == '/media/default.pdf'  and object.plik_4.url == '/media/default.pdf' %}
+			<p> Aktualnie nie został dodany, ani jeden załącznik. </p>
+			{% endif %}
+			<a id="dele1" href="{{ object.plik_1.url }}"><img src="{% static 'img/doc_icon.png' %}"/></a>
+			<a id="dele2" href="{{ object.plik_2.url }}"><img src="{% static 'img/doc_icon.png' %}"/></a>
+			<a id="dele3" href="{{ object.plik_3.url }}"><img src="{% static 'img/doc_icon.png' %}"/></a>
+			<a id="dele4" href="{{ object.plik_4.url }}"><img src="{% static 'img/doc_icon.png' %}"/></a>
+			<a data-toggle="modal" data-target="#myModal"><img id="delete"  src="{% static 'img/img_icon.png' %}" /></a>
+			<div class="modal" id="myModal">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-body">
+							<img class="img-fluid" id="delete" src="{{ object.zdjecie_1.url }}" />
+						</div>
+						<div class="modal-footer">
+							<a type="button" class="btn btn-success" href="{{ object.zdjecie_1.url }}"> Pobierz </a>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<a data-toggle="modal" data-target="#myModal1"><img id="delete1"  src="{% static 'img/img_icon.png' %}" /></a>
+			<div class="modal" id="myModal1">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-body">
+							<img class="img-fluid" id="delete1" src="{{ object.zdjecie_2.url }}" />
+						</div>
+						<div class="modal-footer">
+							<a type="button" class="btn btn-success" href="{{ object.zdjecie_2.url }}"> Pobierz </a>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<a data-toggle="modal" data-target="#myModal2"><img id="delete2"  src="{% static 'img/img_icon.png' %}" /></a>
+			<div class="modal" id="myModal2">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-body">
+							<img class="img-fluid" id="delete2" src="{{ object.zdjecie_3.url }}" />
+						</div>
+						<div class="modal-footer">
+							<a download type="button" class="btn btn-success" href="{{ object.zdjecie_3.url }}"> Pobierz </a>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+						</div>
+					</div>	
+				</div>
+			</div>
+		  </div>
+		</div>
+	</div>
+{% else %}
+<script type="text/javascript">
+	window.location="{% url 'login' %}";
+</script>
+{% endif %}
 {% endblock content %}

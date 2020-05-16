@@ -1,0 +1,71 @@
+﻿
+{% block content %}
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+	.details li {
+		list-style: none;
+	}
+</style>
+  
+<div class="row">
+	<br>
+	<h1 class="page-header">Kontakt</h1>
+	<div class="col-sm-4">		
+		<ul class="container details">
+		<li class="form">
+			<p><i class="material-icons" style="width:50px;">home</i> strzegomek.pl - portal informacyjny </p>
+		</li>
+		<li class="form">
+			<p><i class="material-icons" style="width:50px;">place</i> ul. Kościuszki 2 </p>
+			<p><span style="margin-left:55px;"></span> 58-150 Strzegom </p>
+		</li>
+		<li class="form">
+			<p><i class="material-icons" style="width:50px;">local_phone</i> +48 609 054 400 </p>
+			<p><span style="margin-left:55px;"></span> +48 74 649 11 18 </p>
+		</li>
+		<li class="form">
+			<a href="mailto:kontakt@strzegomek.pl" style="text-decoration:none; color:#333;"><i class="material-icons" style="width:50px;">mail</i> kontakt@strzegomek.pl </a>
+		</li>
+		</ul>		
+	</div>
+	<div class="col-sm-8">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2512.989164683592!2d16.342439015749974!3d50.960904579549165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470fa9792e71ab47%3A0x151872097e174372!2sKo%C5%9Bciuszki+2%2C+58-150+Strzegom!5e0!3m2!1spl!2spl!4v1527948056150" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+	</div>
+</div>
+
+<div class="row">
+	<h1 class="page-header">Skontaktuj się z nami !</h1>
+	{{ form.non_field_errors }}
+	<form class="form-horizontal" action="" method="post">{% csrf_token %}
+		<div class="form-group">
+			{{ form.name.errors }}
+			<label class="control-label col-sm-2" for="name" style="font-size: 15px;">Imię i nazwisko:</label>
+			<div class="col-sm-10">
+				{{ form.temat }}
+			</div>
+		</div>
+		<div class="form-group">
+			{{ form.mail.errors }}
+			<label class="control-label col-sm-2" for="mail" style="font-size: 15px;">Email:</label>
+			<div class="col-sm-10">          
+				{{ form.tresc }}
+			</div>
+		</div>
+		<div class="form-group">
+			{{ form.message.errors }}
+			<label class="control-label col-sm-2" for="message" style="font-size: 15px;">Treść:</label>
+			<div class="col-sm-10">          
+				{{ form.message }}
+			</div>
+		</div>
+		<div class="form-group">        
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" name="submit" class="btn btn-default" style="background-color: #e6e6e6;">Wyślij</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+{% endblock %}

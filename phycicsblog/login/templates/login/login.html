@@ -1,32 +1,36 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<div class="text-center mt-4 text-muted">
-    <h2>Panel logowania dla ucznia</h2>
+<div class="bg text-center">
+	<p>Panel logowania dla ucznia</p>
 </div>
-<div class="col-md-6 offset-md-3">
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-success alert-warning alert-dismissible fade show" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
-        </button>
-        {{ message }}
-    </div>
-    {% endfor %}
-    {% endif %}
-    <form action="{% url 'login' %}" method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="username">Nazwa użytkownika:</label>
-            <input type="text" class="form-control" name="username" id="username" placeholder="Podaj nazwę użytkownika">
-        </div>
-        <div class="form-group">
-            <label for="password">Hasło:</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Podaj hasło">
-        </div>
-        <button type="submit" class="btn btn-secondary mb-3">Zaloguj się</button>
-    </form>
-</div>
+<div class="container">
+	<div class="text-center mt-4">
+		<h2 class="text-muted">Ważne, przeczytaj!!!</h2>
+		<h5 class="text-muted mt-4">Gdyby ktoś zapomniał hasła do swojego konta, proszę o kontakt mailowy lub przez dziennik elektroniczny. Osobiście wolałbym, abyście w razie potrzeby zmiany hasła wysyłali mi wiadomość na maila. Adres e-mail do kontaktu: <a href="mailto:mateusz.sleczek@gmail.com">mateusz.sleczek@gmail.com</a><h5>
+	</div>
+	<div class="col-md-6 offset-md-3">
+		{% if messages %}
+		{% for message in messages %}
+		<div class="alert alert-success alert-warning alert-dismissible fade show" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				<span class="sr-only">Close</span>
+			</button>
+			{{ message }}
+		</div>
+		{% endfor %}
+		{% endif %}
+		<div class="mt-4">
+			<form action="{% url 'login' %}" method="POST">
+				{% csrf_token %}
+				<div class="form-group">
+					<input type="text" class="form-control" name="username" id="username" placeholder="Nazwa użytkownika">
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control" name="password" id="password" placeholder="Hasło">
+				</div>
+				<button type="submit" class="btn btn-secondary mb-3">Zaloguj się</button>
+			</form>
+		</div>
+	</div>
 {% endblock content %}

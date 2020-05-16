@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if request.user.is_authenticated %}
+<div class="bg text-center">
+	<p>Zadania domowe</p>
+</div>
+<div class="container">
+    <div class="row">
+        <div>
+            {% for post in post_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.tytul }}</h2>
+                    <p class="card-text text-muted h6">{{ post.autor }} | {{ post.dodano}} </p>
+                    <p class="card-text">{{post.tresc|slice:":200" }}...</p>
+                    <a href="{% url 'post_detail2' post.slug  %}" class="btn btn-secondary mb-3">Czytaj więcej</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% else %}
+<script type="text/javascript">
+	window.location="{% url 'login' %}";
+</script>
+{% endif %}
+{% endblock content %}

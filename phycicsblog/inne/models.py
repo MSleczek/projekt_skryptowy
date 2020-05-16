@@ -13,6 +13,13 @@ class Post(models.Model):
     autor = models.ForeignKey(User, on_delete= models.CASCADE, related_name='inne_posts')
     zmodyfikowano = models.DateTimeField(auto_now= True)
     tresc = models.TextField()
+    plik_1 = models.FileField(upload_to='upload_file/', default='default.pdf')
+    plik_2 = models.FileField(upload_to='upload_file/', default='default.pdf')
+    plik_3 = models.FileField(upload_to='upload_file/', default='default.pdf')
+    plik_4 = models.FileField(upload_to='upload_file/', default='default.pdf')
+    zdjecie_1 = models.ImageField(upload_to='upload_img/', default='default.jpg')
+    zdjecie_2 = models.ImageField(upload_to='upload_img/', default='default.jpg')
+    zdjecie_3 = models.ImageField(upload_to='upload_img/', default='default.jpg')
     dodano = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
 

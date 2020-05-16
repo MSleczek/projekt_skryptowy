@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'login.apps.LoginConfig',
     'sprawdzian.apps.SprawdzianConfig',
     'inne.apps.InneConfig',
+    'zadania.apps.ZadaniaConfig',
+    'materialy.apps.MaterialyConfig',
+    'forum.apps.ForumConfig',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +124,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/static/',
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
